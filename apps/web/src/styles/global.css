@@ -1,0 +1,94 @@
+@import 'tailwindcss';
+@import './tokens.css';
+
+/* Tailwind v4 theme mapped onto the design tokens. */
+@theme inline {
+  --color-red: var(--c-red);
+  --color-red-deep: var(--c-red-deep);
+  --color-bg: var(--c-bg);
+  --color-surface: var(--c-surface);
+  --color-surface-2: var(--c-surface-2);
+  --color-border: var(--c-border);
+  --color-border-strong: var(--c-border-strong);
+  --color-white: var(--c-white);
+  --color-gold: var(--c-gold);
+  --color-muted: var(--c-text-muted);
+  --color-success: var(--c-success);
+  --color-warning: var(--c-warning);
+  --color-danger: var(--c-danger);
+  --color-warning-bg: var(--c-warning-bg);
+  --color-danger-bg: var(--c-danger-bg);
+  --color-success-bg: var(--c-success-bg);
+
+  --font-display: var(--font-display);
+  --font-sans: var(--font-ui);
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 20px;
+
+  --shadow-1: var(--shadow-1);
+  --shadow-2: var(--shadow-2);
+  --shadow-glow-new: var(--glow-new);
+}
+
+@layer base {
+  html {
+    color-scheme: dark;
+    background: var(--c-bg);
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    margin: 0;
+    min-height: 100dvh;
+    background: var(--c-bg);
+    color: var(--c-white);
+    font-family: var(--font-ui);
+    font-size: 1rem;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  :focus-visible {
+    outline: 2px solid var(--c-gold);
+    outline-offset: 2px;
+  }
+  ::selection {
+    background: rgb(245 197 66 / 0.35);
+  }
+  button,
+  input,
+  textarea,
+  select {
+    font: inherit;
+    color: inherit;
+  }
+}
+
+@layer utilities {
+  .tabular {
+    font-feature-settings: 'tnum';
+    font-variant-numeric: tabular-nums;
+  }
+  /* Order text: exactly as pasted, never truncated (FR-KIT-03, ADR-020). */
+  .order-text {
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    unicode-bidi: plaintext;
+  }
+  .safe-bottom {
+    padding-bottom: max(1rem, env(safe-area-inset-bottom));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

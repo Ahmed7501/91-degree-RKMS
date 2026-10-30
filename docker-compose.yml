@@ -1,0 +1,117 @@
+# 91 Degree RKDS — PRODUCTION base (DEPLOYMENT §5). Always run through scripts/lib/compose.sh:
+#   docker compose -p rkds --env-file /opt/rkds/.env -f docker-compose.yml -f docker-compose.proxy-<traefik|host>.yml …
+# No host ports here: exposure comes only from the chosen overlay. PostgreSQL is never published.
+name: ${COMPOSE_PROJECT_NAME:-rkds}
+
+x-hardening: &hardening
+  security_opt:
+    - no-new-privileges:true
+  logging:
+    driver: json-file
+    options:
+      max-size: 10m
+      max-file: '3'
+
+x-app-env: &app-env
+  NODE_ENV: production
+  DATABASE_URL: postgresql://rkds_app:${RKDS_DB_APP_PASSWORD:?set RKDS_DB_APP_PASSWORD}@db:5432/${POSTGRES_DB:?set POSTGRES_DB}?schema=public
+  APP_ORIGIN: ${APP_ORIGIN:?set APP_ORIGIN}
+  TRUST_PROXY: ${TRUST_PROXY:-2}
+  BUSINESS_DAY_CUTOFF_HOUR: ${BUSINESS_DAY_CUTOFF_HOUR:-6}
+  ORDER_RETENTION_DAYS: ${ORDER_RETENTION_DAYS:-7}
+  RKDS_INSECURE_LOCAL: ${RKDS_INSECURE_LOCAL:-}
+  LOG_LEVEL: ${LOG_LEVEL:-info}
+
+services:
+  db:
+    image: postgres:17.11-alpine
+    <<: *hardening
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:?set POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER:?set POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD}
+      RKDS_DB_APP_PASSWORD: ${RKDS_DB_APP_PASSWORD:?set RKDS_DB_APP_PASSWORD}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./database/init-prod:/docker-entrypoint-initdb.d:ro
+      - ${RKDS_BACKUP_DIR:-/opt/rkds/backups}:/backups
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U "$$POSTGRES_USER" -d "$$POSTGRES_DB"']
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    restart: unless-stopped
+    mem_limit: 512m
+    networks: [internal]
+
+  migrate:
+    image: rkds-server:${RKDS_VERSION:?set RKDS_VERSION}
+    build:
+      context: .
+      dockerfile: apps/server/Dockerfile
+    <<: *hardening
+    command: ['node', '../../node_modules/prisma/build/index.js', 'migrate', 'deploy']
+    environment:
+      <<: *app-env
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: 'no'
+    mem_limit: 256m
+    networks: [internal]
+
+  server:
+    image: rkds-server:${RKDS_VERSION:?set RKDS_VERSION}
+    <<: *hardening
+    environment:
+      <<: *app-env
+      PORT: '3000'
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+    healthcheck:
+      test:
+        - CMD
+        - node
+        - -e
+        - "fetch('http://127.0.0.1:3000/api/health/live').then(r=>process.exit(r.ok?0:1),()=>process.exit(1))"
+      interval: 10s
+      timeout: 5s
+      retries: 6
+      start_period: 15s
+    read_only: true
+    tmpfs: [/tmp]
+    cap_drop: [ALL]
+    restart: unless-stopped
+    mem_limit: 384m
+    networks: [internal]
+
+  web:
+    image: rkds-web:${RKDS_VERSION:?set RKDS_VERSION}
+    build:
+      context: .
+      dockerfile: apps/web/Dockerfile
+    <<: *hardening
+    depends_on:
+      server:
+        condition: service_healthy
+    healthcheck:
+      test: ['CMD-SHELL', 'wget -qO- http://127.0.0.1:8080/ >/dev/null || exit 1']
+      interval: 10s
+      timeout: 5s
+      retries: 6
+    read_only: true
+    tmpfs: [/tmp]
+    cap_drop: [ALL]
+    restart: unless-stopped
+    mem_limit: 64m
+    networks: [internal]
+
+networks:
+  internal:
+    name: ${COMPOSE_PROJECT_NAME:-rkds}_internal
+
+volumes:
+  pgdata:
+    # Explicit name: survives `down` (never use `down -v`). Overridable only for local test stacks.
+    name: ${RKDS_PGDATA_VOLUME:-rkds_pgdata}

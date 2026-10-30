@@ -1,0 +1,26 @@
+/* Design tokens (docs/DESIGN_SYSTEM.md §1–3). Colour means state: brand red is never "overdue". */
+:root {
+  --c-red: #b5121b;
+  --c-red-deep: #8f0d16;
+  --c-bg: #111111;
+  --c-surface: #1c1c1c;
+  --c-surface-2: #242424;
+  --c-border: #2e2e2e;
+  --c-border-strong: #3a3a3a;
+  --c-white: #ffffff;
+  --c-gold: #f5c542;
+  --c-text-muted: #a7a7a7;
+  --c-success: #22c55e;
+  --c-warning: #f59e0b;
+  --c-danger: #ef4444;
+  --c-warning-bg: #2a1f08;
+  --c-danger-bg: #2a0d10;
+  --c-success-bg: #0d2416;
+
+  --shadow-1: 0 1px 0 rgb(255 255 255 / 0.04) inset, 0 4px 12px rgb(0 0 0 / 0.45);
+  --shadow-2: 0 1px 0 rgb(255 255 255 / 0.05) inset, 0 12px 32px rgb(0 0 0 / 0.55);
+  --glow-new: 0 0 0 2px #f5c542, 0 0 24px rgb(245 197 66 / 0.35);
+
+  --font-display: 'Barlow Condensed', 'Inter Variable', system-ui, sans-serif;
+  --font-ui: 'Inter Variable', 'Noto Sans Arabic', system-ui, 'Segoe UI', sans-serif;
+}

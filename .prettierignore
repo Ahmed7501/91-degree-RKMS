@@ -1,0 +1,9 @@
+# Docs are hand-formatted Markdown tables; keep them out of automatic formatting.
+*.md
+package-lock.json
+**/dist/
+**/coverage/
+**/generated/
+database/migrations/
+playwright-report/
+test-results/

@@ -1,0 +1,601 @@
+{
+  "menuVersion": "2026-10-30.1",
+  "source": "docs/assets/brand-reference/91-degree.jpeg + 91-degreee.jpeg (printed menu, transcribed 2026-10-30; see docs/MENU.md for the owner verification checklist)",
+  "currency": "PKR",
+  "categories": [
+    {
+      "id": "appetizers",
+      "name": "Appetizers",
+      "items": [
+        {
+          "id": "hot-and-sour-soup",
+          "name": "Hot and Sour Soup",
+          "description": "Includes chicken, egg, veggies & hot and spicy sauce",
+          "variants": [{ "id": "regular", "label": null, "price": 300 }]
+        },
+        {
+          "id": "chicken-corn-soup",
+          "name": "Chicken Corn Soup",
+          "description": "Includes chicken, egg & corn",
+          "variants": [{ "id": "regular", "label": null, "price": 250 }]
+        }
+      ]
+    },
+    {
+      "id": "fries-fast-food",
+      "name": "Fries & Fast-Food",
+      "items": [
+        {
+          "id": "masala-fries",
+          "name": "Masala Fries",
+          "description": "Our crunchy fries tossed in a blend of warming spices and chaat masala will leave you craving more!",
+          "variants": [
+            { "id": "medium", "label": "Medium", "price": 150 },
+            { "id": "large", "label": "Large", "price": 200 }
+          ]
+        },
+        {
+          "id": "mayo-garlic-fries",
+          "name": "Mayo Garlic Fries",
+          "description": "High quality imported fries top with Mayo Garlic Sauce",
+          "variants": [{ "id": "regular", "label": null, "price": 280 }]
+        },
+        {
+          "id": "chipotle-fries",
+          "name": "Chipotle fries",
+          "description": "High quality imported fries top with Chipotle sauce",
+          "variants": [{ "id": "regular", "label": null, "price": 280 }]
+        },
+        {
+          "id": "pizza-fries",
+          "name": "Pizza Fries",
+          "description": "Oven baked fries top with chicken, cheese, olives, jalapinoes",
+          "variants": [
+            { "id": "medium", "label": "Medium", "price": 550 },
+            { "id": "large", "label": "Large", "price": 700 }
+          ]
+        },
+        {
+          "id": "peri-peri-bites",
+          "name": "Peri Peri Bites",
+          "description": "Stuffed green chillies with cheese and serve with peri peri sauce",
+          "variants": [{ "id": "regular", "label": null, "price": 500 }]
+        },
+        {
+          "id": "fish-and-chips",
+          "name": "Fish and Chips",
+          "description": "Crispy fried fish served with tartar sauce and french fries",
+          "note": "Order to be placed 24 hrs in advance",
+          "variants": [{ "id": "regular", "label": null, "price": 700 }]
+        },
+        {
+          "id": "broast-quarter",
+          "name": "Broast Quarter",
+          "description": "Crispy fried Broast served with Al-baik Toum Lebanese Sauce, Fries & Hotdog Bun",
+          "variants": [
+            { "id": "chest", "label": "Chest", "price": 600 },
+            { "id": "leg", "label": "Leg", "price": 500 }
+          ]
+        },
+        {
+          "id": "91-pizza",
+          "name": "91 Pizza",
+          "description": "Includes Pizza sauce, BBQ Tandoori/Malai chicken, Vegies, Top with Cheese, Jalapeno, Olive, Crush Chilli & bell paper",
+          "variants": [
+            { "id": "small", "label": "Small", "price": 400 },
+            { "id": "medium", "label": "Medium", "price": 800 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wings-strips",
+      "name": "Wings & Strips",
+      "items": [
+        {
+          "id": "chicken-strips",
+          "name": "Chicken Strips",
+          "description": "Breaded chicken strips served with honey mustard sauce",
+          "variants": [{ "id": "regular", "label": null, "price": 450 }]
+        },
+        {
+          "id": "honey-mustard-wings",
+          "name": "Honey Mustard Wings",
+          "description": "Crispy fried wings served with honey mustard sauce",
+          "variants": [{ "id": "regular", "label": null, "price": 500 }]
+        },
+        {
+          "id": "crispy-chicken-wings",
+          "name": "Crispy Chicken Wings",
+          "description": "Crispy fried wings served with chipotle sauce",
+          "variants": [{ "id": "regular", "label": null, "price": 500 }]
+        },
+        {
+          "id": "buffalo-wings",
+          "name": "Buffalo Wings",
+          "description": "Crispy fried wings served with buffalo sauce",
+          "variants": [{ "id": "regular", "label": null, "price": 500 }]
+        },
+        {
+          "id": "hot-shot-with-dip",
+          "name": "Hot Shot with Dip",
+          "description": "Crispy fried chicken served with special sauce",
+          "variants": [{ "id": "regular", "label": null, "price": 450 }]
+        },
+        {
+          "id": "chicken-nuggets",
+          "name": "Chicken Nuggets",
+          "description": "Small piece of deboned chicken meat that is breaded, then deep-fried served with Fries",
+          "variants": [{ "id": "regular", "label": null, "price": 400 }]
+        }
+      ]
+    },
+    {
+      "id": "burgers",
+      "name": "Burgers",
+      "items": [
+        {
+          "id": "ultimate-beef-burger",
+          "name": "Ultimate Beef Burger",
+          "description": "Grilled beef patty with bbq flavour and ice berg served with coleslaw & fries",
+          "variants": [{ "id": "regular", "label": null, "price": 650 }]
+        },
+        {
+          "id": "classic-beef-burger",
+          "name": "Classic Beef Burger",
+          "description": "Chipotle sauce with tomatoes, onion and ice berg served with coleslaw & fries",
+          "variants": [{ "id": "regular", "label": null, "price": 650 }]
+        },
+        {
+          "id": "american-beef-burger",
+          "name": "American Beef Burger",
+          "description": "All time favourite classic american burger top with egg, mustard sauce and ice berg served with coleslaw & fries",
+          "variants": [{ "id": "regular", "label": null, "price": 700 }]
+        },
+        {
+          "id": "tex-mex-beef-burger-spicy",
+          "name": "Tex Mex Beef Burger (Spicy)",
+          "description": "Beef Patty, top with tex mex sauce ice berg served with coleslaw & fries",
+          "variants": [{ "id": "regular", "label": null, "price": 700 }]
+        },
+        {
+          "id": "stuffed-cheese-beef-burger",
+          "name": "Stuffed Cheese Beef Burger",
+          "description": "Beef Patty, onion, tomatoes, top with chappotle sauce served with coleslaw & fries",
+          "variants": [{ "id": "regular", "label": null, "price": 800 }]
+        },
+        {
+          "id": "korean-crispy-buldak-chicken-burger",
+          "name": "Korean Crispy Buldak Chicken Burger",
+          "description": "Crispy fried chicken fillet coated in spicy Korean Buldak sauce, topped with Cheese slice, fresh lettuce, served with coleslaw & Fries",
+          "variants": [{ "id": "regular", "label": null, "price": 600 }]
+        },
+        {
+          "id": "chipotle-buffalo-chicken-burger",
+          "name": "Chipotle/Buffalo Chicken Burger",
+          "description": "Grilled chicken top with Chipotle/buffalo sauce ice berg served with fries",
+          "variants": [{ "id": "regular", "label": null, "price": 500 }]
+        },
+        {
+          "id": "91-signature-chicken-burger",
+          "name": "91 Signature Chicken Burger",
+          "description": "Double Fillet of chicken, top with cheese, ice burg, pickle & 91 signature sauce served with coleslaw & fries",
+          "variants": [{ "id": "regular", "label": null, "price": 650 }]
+        },
+        {
+          "id": "zinger-burger",
+          "name": "Zinger Burger",
+          "description": "Crispy fried chicken fillet top with special sauce served with coleslaw & fries",
+          "variants": [{ "id": "regular", "label": null, "price": 460 }]
+        },
+        {
+          "id": "chicken-burger",
+          "name": "Chicken Burger",
+          "description": "Chicken Pett top with mayonise, ketchup, iceburg serve with coleslaw & fries",
+          "variants": [{ "id": "regular", "label": null, "price": 400 }]
+        },
+        {
+          "id": "mighty-zinger-burger",
+          "name": "Mighty Zinger Burger",
+          "description": "Double Crispy fried chicken filet, cheese top with special sauce serve with coleslaw & fries",
+          "variants": [{ "id": "regular", "label": null, "price": 700 }]
+        }
+      ]
+    },
+    {
+      "id": "chinese",
+      "name": "Chinese",
+      "items": [
+        {
+          "id": "dry-chicken-chilli-with-fried-rice",
+          "name": "Dry Chicken Chilli With Fried Rice",
+          "description": "Spicy chicken with vegetables in special sauce served with fried rice",
+          "variants": [{ "id": "regular", "label": null, "price": 700 }]
+        },
+        {
+          "id": "chicken-manchurian-with-fried-rice",
+          "name": "Chicken Manchurian With Fried Rice",
+          "description": "Sweet and spicy sauce with chicken served with fried rice",
+          "variants": [{ "id": "regular", "label": null, "price": 700 }]
+        },
+        {
+          "id": "chicken-chowmein",
+          "name": "Chicken Chowmein",
+          "description": "Egg noodles with vegetables and home made chilli sauce",
+          "variants": [{ "id": "regular", "label": null, "price": 600 }]
+        },
+        {
+          "id": "chicken-shashlik-with-fried-rice",
+          "name": "Chicken Shashlik With Fried Rice",
+          "description": "Chicken, onion, capsicum, tomato in red sauce served with fried rice",
+          "variants": [{ "id": "regular", "label": null, "price": 700 }]
+        },
+        {
+          "id": "singaporean-rice",
+          "name": "Singaporean Rice",
+          "description": "All time favourite rice with chicken, noodles, creamy sauce, vegetables and sweet & sour sauce",
+          "variants": [{ "id": "regular", "label": null, "price": 800 }]
+        },
+        {
+          "id": "crispy-chicken-cheese-with-fried-rice",
+          "name": "Crispy Chicken Cheese With Fried Rice",
+          "description": "Crispy zinger filet with cheese, Top with Melted Sweet and spicy sauce, Served with fried rice",
+          "variants": [{ "id": "regular", "label": null, "price": 750 }]
+        }
+      ]
+    },
+    {
+      "id": "pakistani",
+      "name": "Pakistani",
+      "items": [
+        {
+          "id": "chicken-karahi",
+          "name": "Chicken Karahi",
+          "note": "Serves 2 - 3",
+          "variants": [{ "id": "regular", "label": null, "price": 1100 }]
+        },
+        {
+          "id": "chicken-karahi-white",
+          "name": "Chicken Karahi White",
+          "note": "Serves 2 - 3",
+          "variants": [{ "id": "regular", "label": null, "price": 1200 }]
+        },
+        {
+          "id": "chicken-makhni-handi",
+          "name": "Chicken Makhni Handi",
+          "note": "Serves 2 - 3",
+          "variants": [{ "id": "regular", "label": null, "price": 1300 }]
+        },
+        {
+          "id": "paneer-reshmi-handi",
+          "name": "Paneer Reshmi Handi",
+          "note": "Serves 2 - 3",
+          "variants": [{ "id": "regular", "label": null, "price": 1400 }]
+        },
+        {
+          "id": "chicken-pulao",
+          "name": "Chicken Pulao",
+          "note": "Serves 2 - 3",
+          "variants": [{ "id": "regular", "label": null, "price": 1200 }]
+        },
+        {
+          "id": "chicken-biryani",
+          "name": "Chicken Biryani",
+          "note": "Serves 2 - 3",
+          "variants": [{ "id": "regular", "label": null, "price": 1200 }]
+        },
+        {
+          "id": "shahi-daal",
+          "name": "Shahi Daal",
+          "note": "Serves 2 - 3",
+          "variants": [{ "id": "regular", "label": null, "price": 500 }]
+        }
+      ]
+    },
+    {
+      "id": "bar-bq",
+      "name": "BAR B.Q",
+      "items": [
+        {
+          "id": "chicken-tikka",
+          "name": "Chicken Tikka",
+          "variants": [
+            { "id": "chest", "label": "Chest", "price": 500 },
+            { "id": "leg", "label": "Leg", "price": 450 }
+          ]
+        },
+        {
+          "id": "malai-boti-plate",
+          "name": "Malai Boti (Plate)",
+          "variants": [{ "id": "regular", "label": null, "price": 550 }]
+        },
+        {
+          "id": "tandoori-chicken-boti-plate",
+          "name": "Tandoori Chicken Boti (Plate)",
+          "variants": [{ "id": "regular", "label": null, "price": 500 }]
+        },
+        {
+          "id": "chandan-kabab-plate",
+          "name": "Chandan Kabab (Plate)",
+          "variants": [{ "id": "regular", "label": null, "price": 600 }]
+        },
+        {
+          "id": "seekh-kabab-plate",
+          "name": "Seekh Kabab (Plate)",
+          "variants": [{ "id": "regular", "label": null, "price": 600 }]
+        },
+        {
+          "id": "reshmi-kabab-plate",
+          "name": "Reshmi Kabab (Plate)",
+          "variants": [{ "id": "regular", "label": null, "price": 500 }]
+        }
+      ]
+    },
+    {
+      "id": "flavours-of-fame",
+      "name": "Flavours of Fame",
+      "items": [
+        {
+          "id": "fettuccine-alfredo-pasta",
+          "name": "Fettuccine Alfredo Pasta",
+          "description": "Creamy Fettuccine Pasta in Rich White Alfredo Sauce with Parmesan & Grilled Chicken",
+          "variants": [{ "id": "regular", "label": null, "price": 750 }]
+        },
+        {
+          "id": "panne-marinara-pasta",
+          "name": "Panne Marinara Pasta",
+          "description": "Tangy Penne Pasta in Classic Red Marinara Sauce with Italian Herbs & Parmesan & Grilled Chicken",
+          "variants": [{ "id": "regular", "label": null, "price": 650 }]
+        },
+        {
+          "id": "chicken-lasagne",
+          "name": "Chicken Lasagne",
+          "description": "Lasagna dish made with several layers of lasagna sheets with sauce and other ingredients, such as meats and cheese, in between the lasagna noodles",
+          "variants": [
+            { "id": "small", "label": "Small", "price": 650 },
+            { "id": "large", "label": "Large", "price": 1000 }
+          ]
+        },
+        {
+          "id": "parmesan-chicken-steak",
+          "name": "Parmesan Chicken Steak",
+          "description": "Crispy parmesan-crusted chicken steak served alongside a rich and creamy white sauce pasta",
+          "variants": [{ "id": "regular", "label": null, "price": 1000 }]
+        },
+        {
+          "id": "chicken-madhbi-rice",
+          "name": "Chicken Madhbi Rice",
+          "description": "Aromatic Basmati Rice infused with authentic Madhbi spices, paired with a juicy Grilled Chicken Tikka Leg. Served with fresh Raita, special Chutney & Grilled Chillis",
+          "variants": [
+            { "id": "rs-700", "label": "Rs 700 size", "price": 700 },
+            { "id": "rs-1000", "label": "Rs 1000 size", "price": 1000 },
+            { "id": "rs-2000", "label": "Rs 2000 size", "price": 2000 }
+          ]
+        },
+        {
+          "id": "kunafa",
+          "name": "Kunafa",
+          "description": "Kunafa is a crunchy, buttery dessert made with shredded pastry layers enclosing a creamy soft milk pudding. Drizzled with fragrant simple syrup",
+          "variants": [
+            { "id": "small", "label": "Small", "price": 650 },
+            { "id": "medium", "label": "Medium", "price": 750 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rolls",
+      "name": "Rolls",
+      "items": [
+        {
+          "id": "shawarma-roll",
+          "name": "Shawarma Roll",
+          "variants": [{ "id": "regular", "label": null, "price": 200 }]
+        },
+        {
+          "id": "chicken-chatni-roll",
+          "name": "Chicken Chatni Roll",
+          "variants": [{ "id": "regular", "label": null, "price": 220 }]
+        },
+        {
+          "id": "malai-boti-roll",
+          "name": "Malai Boti Roll",
+          "variants": [{ "id": "regular", "label": null, "price": 240 }]
+        },
+        {
+          "id": "crispy-chicken-roll",
+          "name": "Crispy Chicken Roll",
+          "variants": [{ "id": "regular", "label": null, "price": 360 }]
+        },
+        {
+          "id": "mayo-garlic-roll",
+          "name": "Mayo Garlic Roll",
+          "variants": [{ "id": "regular", "label": null, "price": 260 }]
+        },
+        {
+          "id": "seekh-kabab-roll",
+          "name": "Seekh Kabab Roll",
+          "variants": [{ "id": "regular", "label": null, "price": 350 }]
+        },
+        {
+          "id": "reshmi-kabab-roll",
+          "name": "Reshmi Kabab Roll",
+          "variants": [{ "id": "regular", "label": null, "price": 230 }]
+        }
+      ]
+    },
+    {
+      "id": "deals",
+      "name": "Deals",
+      "items": [
+        {
+          "id": "deal-1",
+          "name": "Deal 1 – Zinger burger with Fries + Chicken Roll + Drink",
+          "variants": [{ "id": "regular", "label": null, "price": 700 }]
+        },
+        {
+          "id": "deal-2",
+          "name": "Deal 2 – 4 Zinger burger with Fries + 1.5 Ltr Drink",
+          "variants": [{ "id": "regular", "label": null, "price": 1800 }]
+        },
+        {
+          "id": "deal-3",
+          "name": "Deal 3 – 91 Sig burger + Shawarma Roll + Drink",
+          "variants": [{ "id": "regular", "label": null, "price": 800 }]
+        },
+        {
+          "id": "deal-4",
+          "name": "Deal 4 – Club Sandwich + Texmax Burger + 500ml Drink",
+          "variants": [{ "id": "regular", "label": null, "price": 1200 }]
+        },
+        {
+          "id": "deal-5",
+          "name": "Deal 5 – 91 Signature Burger + 91 Signature sandwich + Pizza fries + 1 Ltr Drink",
+          "variants": [{ "id": "regular", "label": null, "price": 1900 }]
+        },
+        {
+          "id": "deal-6",
+          "name": "Deal 6 – Broast QTR (L) + Club sandwich + 500 ML Drink",
+          "variants": [{ "id": "regular", "label": null, "price": 1000 }]
+        },
+        {
+          "id": "deal-7",
+          "name": "Deal 7 – Chicken tikka (L) + Pori Paratha + 300 Ml Drink",
+          "variants": [{ "id": "regular", "label": null, "price": 550 }]
+        },
+        {
+          "id": "deal-8",
+          "name": "Deal 8 – Medium Pizza + Pizza Fries + Kunafa + Drink",
+          "variants": [{ "id": "regular", "label": null, "price": 1950 }]
+        },
+        {
+          "id": "deal-9",
+          "name": "Deal 9 – Singaporean rice + Crispy chicken wings + 1 Ltr Drink",
+          "variants": [{ "id": "regular", "label": null, "price": 1400 }]
+        },
+        {
+          "id": "deal-10",
+          "name": "Deal 10 – Fettuccine Alfredo Pasta + Chowmin + 500 ML",
+          "variants": [{ "id": "regular", "label": null, "price": 1250 }]
+        },
+        {
+          "id": "deal-11",
+          "name": "Deal 11 – Dry Chilli with Rice + Broast (L) + 500 ml Drink",
+          "variants": [{ "id": "regular", "label": null, "price": 1250 }]
+        },
+        {
+          "id": "deal-12",
+          "name": "Deal 12 – BBQ Platter (Tikka Chest+Leg, Tandoori Boti, Malai Boti, Reshmi Kabab, 4 Puri Parahata, 1.5 Litter Drink)",
+          "variants": [{ "id": "regular", "label": null, "price": 3000 }]
+        }
+      ]
+    },
+    {
+      "id": "sandwiches",
+      "name": "Sandwiches",
+      "items": [
+        {
+          "id": "crispy-club-sandwich",
+          "name": "Crispy Club Sandwich",
+          "description": "Includes crispy chicken piece, egg & Vegies served with Coleslaw & fries",
+          "variants": [{ "id": "regular", "label": null, "price": 550 }]
+        },
+        {
+          "id": "club-sandwich",
+          "name": "Club Sandwich",
+          "description": "Includes chicken spread, egg & Vegies served with Coleslaw & fries",
+          "variants": [{ "id": "regular", "label": null, "price": 500 }]
+        },
+        {
+          "id": "continental-club-sandwich",
+          "name": "Continental Club Sandwich",
+          "description": "Includes 4 slices of bread, BBQ & Grilled chicken served with Coleslaw & fries",
+          "variants": [{ "id": "regular", "label": null, "price": 700 }]
+        },
+        {
+          "id": "grilled-chicken-sandwich",
+          "name": "Grilled Chicken Sandwich",
+          "description": "Includes Grilled chicken fillet, egg & Vegies served with Coleslaw & fries",
+          "variants": [{ "id": "regular", "label": null, "price": 600 }]
+        },
+        {
+          "id": "bbq-club-sandwich",
+          "name": "BBQ Club Sandwich",
+          "description": "Includes Jalapeno Chicken spread, egg & Vegies served with Coleslaw & fries",
+          "variants": [{ "id": "regular", "label": null, "price": 600 }]
+        },
+        {
+          "id": "malai-boti-sandwich",
+          "name": "Malai Boti Sandwich",
+          "description": "Includes chicken malai boti, egg & Vegies served with Coleslaw & fries",
+          "variants": [{ "id": "regular", "label": null, "price": 550 }]
+        },
+        {
+          "id": "91-signature-sandwich",
+          "name": "91 Signature Sandwich",
+          "description": "Includes chicken cheesy & creamy sauce, Top with cheese jalapeno, olive served with egg & Vegies served with Coleslaw & fries",
+          "variants": [{ "id": "regular", "label": null, "price": 650 }]
+        }
+      ]
+    },
+    {
+      "id": "additional",
+      "name": "Additional",
+      "items": [
+        {
+          "id": "drinks",
+          "name": "Drinks",
+          "variants": [
+            { "id": "300-ml", "label": "300 Ml", "price": 100 },
+            { "id": "500-ml", "label": "500 Ml", "price": 130 }
+          ]
+        },
+        {
+          "id": "plain-naan",
+          "name": "Plain Naan",
+          "variants": [{ "id": "regular", "label": null, "price": 30 }]
+        },
+        {
+          "id": "roghni-naan",
+          "name": "Roghni Naan",
+          "variants": [{ "id": "regular", "label": null, "price": 80 }]
+        },
+        {
+          "id": "chapati",
+          "name": "Chapati",
+          "variants": [{ "id": "regular", "label": null, "price": 30 }]
+        },
+        {
+          "id": "puri-paratha",
+          "name": "Puri Paratha",
+          "variants": [{ "id": "regular", "label": null, "price": 120 }]
+        },
+        {
+          "id": "salad",
+          "name": "Salad",
+          "variants": [{ "id": "regular", "label": null, "price": 100 }]
+        },
+        {
+          "id": "raita",
+          "name": "Raita",
+          "variants": [{ "id": "regular", "label": null, "price": 100 }]
+        },
+        {
+          "id": "cheese-slice",
+          "name": "Cheese Slice",
+          "variants": [{ "id": "regular", "label": null, "price": 70 }]
+        },
+        {
+          "id": "dip-sauce",
+          "name": "Dip Sauce",
+          "variants": [{ "id": "regular", "label": null, "price": 50 }]
+        },
+        {
+          "id": "coleslaw",
+          "name": "Coleslaw",
+          "variants": [{ "id": "regular", "label": null, "price": 20 }]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "name": "rkds",
+  "private": true,
+  "description": "91 Degree Restaurant Kitchen Display System",
+  "type": "module",
+  "engines": {
+    "node": ">=24 <25"
+  },
+  "workspaces": [
+    "packages/shared",
+    "apps/server",
+    "apps/web"
+  ],
+  "scripts": {
+    "dev": "concurrently -n server,web -c red,yellow \"npm run dev -w @rkds/server\" \"npm run dev -w @rkds/web\"",
+    "build": "npm run build --workspaces --if-present",
+    "typecheck": "npm run typecheck --workspaces --if-present && tsc -p tsconfig.json && tsc -p tests/e2e/tsconfig.json",
+    "lint": "eslint . --max-warnings=0",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test:unit": "vitest run --project shared --project server-unit --project web",
+    "test:integration": "vitest run --project server-int",
+    "test:e2e": "npm run build && playwright test",
+    "test:coverage": "vitest run --coverage",
+    "verify": "npm run typecheck && npm run lint && npm run test:unit && npm run test:integration && npm run build",
+    "verify:release": "npm run verify && npm run test:coverage && npm run test:e2e && npm run compose:check && npm run check:security",
+    "db:up": "docker compose -f docker-compose.dev.yml up -d --wait",
+    "db:down": "docker compose -f docker-compose.dev.yml stop",
+    "db:migrate": "npm run db:migrate -w @rkds/server --",
+    "db:migrate:check": "npm run db:migrate:check -w @rkds/server",
+    "owner:create": "npm run owner:create -w @rkds/server",
+    "compose:check": "node scripts/compose-check.mjs",
+    "check:security": "npm audit --omit=dev --audit-level=high && node scripts/check-bundle-secrets.mjs"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.14.0",
+    "@eslint/js": "10.0.1",
+    "@playwright/test": "1.64.1",
+    "@types/node": "24.19.2",
+    "@vitest/coverage-v8": "5.0.5",
+    "concurrently": "10.0.6",
+    "eslint": "10.13.0",
+    "eslint-config-prettier": "10.1.8",
+    "eslint-plugin-react-hooks": "7.1.1",
+    "globals": "17.13.0",
+    "prettier": "3.9.10",
+    "typescript": "6.0.3",
+    "typescript-eslint": "8.72.1",
+    "vitest": "5.0.5"
+  },
+  "allowScripts": {
+    "@prisma/engines@7.10.1": true,
+    "prisma@7.10.1": true,
+    "esbuild@0.28.2": true
+  }
+}

@@ -1,0 +1,21 @@
+# Overlay A (DEPLOYMENT §4): the VPS already runs Traefik with the Docker provider.
+# Only `web` joins the existing Traefik network; db and server never do. Traefik picks the labels
+# up dynamically: no Traefik restart and no edits to its compose file.
+services:
+  web:
+    networks: [internal, proxy]
+    labels:
+      traefik.enable: 'true'
+      traefik.docker.network: ${TRAEFIK_NETWORK:?set TRAEFIK_NETWORK}
+      traefik.http.routers.rkds.rule: Host(`${RKDS_DOMAIN:?set RKDS_DOMAIN}`)
+      traefik.http.routers.rkds.entrypoints: ${TRAEFIK_ENTRYPOINT:?set TRAEFIK_ENTRYPOINT}
+      traefik.http.routers.rkds.tls.certresolver: ${TRAEFIK_CERTRESOLVER:?set TRAEFIK_CERTRESOLVER}
+      traefik.http.services.rkds.loadbalancer.server.port: '8080'
+      # HSTS (SECURITY §6): browsers only use HTTPS for this host for a year.
+      traefik.http.routers.rkds.middlewares: rkds-hsts
+      traefik.http.middlewares.rkds-hsts.headers.stsSeconds: '31536000'
+
+networks:
+  proxy:
+    external: true
+    name: ${TRAEFIK_NETWORK:?set TRAEFIK_NETWORK}

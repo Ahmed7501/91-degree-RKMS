@@ -1,0 +1,169 @@
+// 91 Degree RKDS — PostgreSQL schema (docs/DATABASE.md).
+// CHECK constraints that Prisma cannot model are hand-written in the migrations and
+// verified by apps/server/tests/integration/schema-constraints.int.test.ts.
+
+generator client {
+  provider     = "prisma-client"
+  output       = "../apps/server/src/generated/prisma"
+  moduleFormat = "esm"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum UserRole {
+  OWNER
+
+  @@map("user_role")
+}
+
+enum SessionRole {
+  OWNER
+  KITCHEN
+
+  @@map("session_role")
+}
+
+enum OrderSource {
+  WHATSAPP
+  FOODPANDA
+  PHONE
+  OTHER
+
+  @@map("order_source")
+}
+
+enum OrderKind {
+  TEXT
+  MENU
+
+  @@map("order_kind")
+}
+
+enum OrderStatus {
+  ACTIVE
+  COMPLETED
+  CANCELLED
+
+  @@map("order_status")
+}
+
+enum OrderEventType {
+  CREATED
+  COMPLETED
+  CANCELLED
+
+  @@map("order_event_type")
+}
+
+model User {
+  id           String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  username     String    @unique
+  passwordHash String    @map("password_hash")
+  role         UserRole  @default(OWNER)
+  createdAt    DateTime  @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt    DateTime  @default(now()) @map("updated_at") @db.Timestamptz(3)
+  disabledAt   DateTime? @map("disabled_at") @db.Timestamptz(3)
+
+  sessions       Session[]            @relation("SessionUser")
+  pairedSessions Session[]            @relation("SessionCreatedBy")
+  pairingCodes   KitchenPairingCode[]
+  createdOrders  Order[]              @relation("OrderCreatedBy")
+  closedOrders   Order[]              @relation("OrderClosedBy")
+  orderEvents    OrderEvent[]
+
+  @@map("users")
+}
+
+model Session {
+  id              String      @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  tokenHash       String      @unique @map("token_hash")
+  role            SessionRole
+  userId          String?     @map("user_id") @db.Uuid
+  deviceLabel     String?     @map("device_label")
+  createdByUserId String?     @map("created_by_user_id") @db.Uuid
+  createdAt       DateTime    @default(now()) @map("created_at") @db.Timestamptz(3)
+  lastSeenAt      DateTime    @map("last_seen_at") @db.Timestamptz(3)
+  expiresAt       DateTime    @map("expires_at") @db.Timestamptz(3)
+  revokedAt       DateTime?   @map("revoked_at") @db.Timestamptz(3)
+  userAgent       String?     @map("user_agent")
+
+  user      User? @relation("SessionUser", fields: [userId], references: [id], onDelete: Cascade)
+  createdBy User? @relation("SessionCreatedBy", fields: [createdByUserId], references: [id], onDelete: SetNull)
+
+  @@index([role, revokedAt], map: "sessions_role_revoked_idx")
+  @@index([userId], map: "sessions_user_idx")
+  @@map("sessions")
+}
+
+model KitchenPairingCode {
+  id              String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  codeHash        String    @unique @map("code_hash")
+  deviceLabel     String    @map("device_label")
+  createdByUserId String    @map("created_by_user_id") @db.Uuid
+  createdAt       DateTime  @map("created_at") @db.Timestamptz(3)
+  expiresAt       DateTime  @map("expires_at") @db.Timestamptz(3)
+  usedAt          DateTime? @map("used_at") @db.Timestamptz(3)
+
+  createdBy User @relation(fields: [createdByUserId], references: [id], onDelete: Cascade)
+
+  @@map("kitchen_pairing_codes")
+}
+
+model OrderDayCounter {
+  businessDate DateTime @id @map("business_date") @db.Date
+  lastNumber   Int      @map("last_number")
+  updatedAt    DateTime @map("updated_at") @db.Timestamptz(3)
+
+  @@map("order_day_counters")
+}
+
+model Order {
+  id              String      @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  businessDate    DateTime    @map("business_date") @db.Date
+  dailyNumber     Int         @map("daily_number")
+  idempotencyKey  String      @unique @map("idempotency_key") @db.Uuid
+  requestHash     String      @map("request_hash")
+  text            String
+  kind            OrderKind   @default(TEXT)
+  /// MENU orders: snapshot of the selected lines (OrderItemDto[]); NULL for TEXT orders.
+  items           Json?
+  notes           String?
+  source          OrderSource
+  prepMinutes     Int         @map("prep_minutes") @db.SmallInt
+  status          OrderStatus @default(ACTIVE)
+  createdAt       DateTime    @map("created_at") @db.Timestamptz(3)
+  deadlineAt      DateTime    @map("deadline_at") @db.Timestamptz(3)
+  completedAt     DateTime?   @map("completed_at") @db.Timestamptz(3)
+  cancelledAt     DateTime?   @map("cancelled_at") @db.Timestamptz(3)
+  updatedAt       DateTime    @map("updated_at") @db.Timestamptz(3)
+  version         Int         @default(1)
+  createdByUserId String?     @map("created_by_user_id") @db.Uuid
+  closedByUserId  String?     @map("closed_by_user_id") @db.Uuid
+
+  createdBy User?        @relation("OrderCreatedBy", fields: [createdByUserId], references: [id], onDelete: SetNull)
+  closedBy  User?        @relation("OrderClosedBy", fields: [closedByUserId], references: [id], onDelete: SetNull)
+  events    OrderEvent[]
+
+  @@unique([businessDate, dailyNumber], map: "orders_business_date_daily_number_key")
+  @@index([status, createdAt, id], map: "orders_status_created_asc_idx")
+  @@index([businessDate, createdAt(sort: Desc), id(sort: Desc)], map: "orders_history_idx")
+  @@index([businessDate, status, createdAt(sort: Desc)], map: "orders_business_status_idx")
+  @@map("orders")
+}
+
+model OrderEvent {
+  id          BigInt         @id @default(autoincrement())
+  orderId     String         @map("order_id") @db.Uuid
+  type        OrderEventType
+  actorUserId String?        @map("actor_user_id") @db.Uuid
+  occurredAt  DateTime       @map("occurred_at") @db.Timestamptz(3)
+  requestId   String?        @map("request_id")
+
+  order Order @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  actor User? @relation(fields: [actorUserId], references: [id], onDelete: SetNull)
+
+  @@index([orderId, occurredAt], map: "order_events_order_occurred_idx")
+  @@map("order_events")
+}

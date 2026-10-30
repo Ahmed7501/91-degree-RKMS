@@ -1,0 +1,22 @@
+node_modules/
+dist/
+coverage/
+*.tsbuildinfo
+apps/server/src/generated/
+playwright-report/
+test-results/
+blob-report/
+
+# Secrets: only the committed placeholder/dummy files are allowed
+.env
+.env.*
+!.env.example
+!.env.compose-check
+
+# Database dumps never go into Git (they contain customer order text)
+*.dump
+*.dump.partial
+backups/
+
+.DS_Store
+Thumbs.db

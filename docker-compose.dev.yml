@@ -1,0 +1,32 @@
+# LOCAL DEVELOPMENT ONLY — never used on the VPS.
+# Postgres for `npm run dev` (rkds_dev) and automated tests (rkds_test), bound to loopback only.
+# Port 55432 avoids clashing with any other Postgres on this machine (e.g. one already on 5432).
+# Passwords here are throwaway local values, documented in docs/ENVIRONMENT_VARIABLES.md.
+name: rkds-dev
+
+services:
+  db:
+    image: postgres:17.11-alpine
+    environment:
+      POSTGRES_USER: rkds_admin
+      POSTGRES_PASSWORD: rkds_admin_dev
+      POSTGRES_DB: rkds_dev
+    ports:
+      - '127.0.0.1:55432:5432'
+    volumes:
+      - rkds_devdata:/var/lib/postgresql/data
+      - ./database/init:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test:
+        [
+          'CMD-SHELL',
+          'pg_isready -U rkds_admin -d rkds_dev && pg_isready -U rkds_admin -d rkds_test',
+        ]
+      interval: 2s
+      timeout: 3s
+      retries: 30
+    restart: unless-stopped
+
+volumes:
+  rkds_devdata:
+    name: rkds_devdata

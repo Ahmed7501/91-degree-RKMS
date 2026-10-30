@@ -1,0 +1,6 @@
+# Overlay B (DEPLOYMENT §4): a host nginx or Caddy terminates TLS and forwards to this port.
+# Bound to loopback only, so nothing is reachable from outside except through that proxy.
+services:
+  web:
+    ports:
+      - '127.0.0.1:${RKDS_HTTP_PORT:?set RKDS_HTTP_PORT}:8080'
